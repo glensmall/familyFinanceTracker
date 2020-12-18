@@ -16,7 +16,7 @@ import (
 
 	Purpose : Backend handler to validate the user token provided
 */
-func removeEntry(w http.ResponseWriter, r *http.Request) {
+func validateToken(w http.ResponseWriter, r *http.Request) {
 
 	//TODO: add code here
 }

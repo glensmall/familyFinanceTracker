@@ -17,13 +17,12 @@ import (
 */
 func main() {
 
-	fmt.Println("Starting webServer......")
+	fmt.Println("Starting backend Engine......")
 
 	// define the handler Functions
 	http.HandleFunc("/getEntries/", getEntries)
 	http.HandleFunc("/addEntry/", addEntry)
 	http.HandleFunc("/removeEntry/", removeEntry)
-
 
 	// start listening
 	http.ListenAndServe(":8080", nil)

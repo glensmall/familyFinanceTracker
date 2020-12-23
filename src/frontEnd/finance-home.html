@@ -8,27 +8,31 @@
     <script type='text/javascript' src='js/knockout-min.js'></script>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
-<body>
+<body class="text-center">
     <!-- Bootstrap container-->
     <main class="container-fluid">
         <div class="row row-cols-1 row-cols-1-md-3 mb-3 text-center">
-            <div class="col">
-                <div class="card mb-4 shadow-sm">
-                    <div class="card-header">
-                        <div class="col-sm-12">
-                            <h4 class="my-0 fw-normal">Current Balance</h4>
+            <div class="col-sm-4"></div>
+            <div class="col-sm-4">
+                <div class="col">
+                    <div class="card mb-4 shadow-sm">
+                        <div class="card-header">
+                            <div class="col-sm-12">
+                                <h4 class="my-0 fw-normal">Current Balance</h4>
+                            </div>
                         </div>
+                        <div class="card-body">
+                            Balance will be displayed here
+                        </div>                    
                     </div>
-                    <div class="card-body">
-                        Balance will be displayed here
-                    </div>                    
                 </div>
             </div>
+            <div class="col-sm-4"></div>
         </div>
         <div class="row">
             <div class="col-sm-12">
                 <div class="table-responsive">
-                    <table class="table table-striped table-sm">
+                    <table class="table table-sm table-hover table-condensed">
                         <thead>
                             <tr>
                                 <th>Description</th>

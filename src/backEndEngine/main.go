@@ -2,7 +2,11 @@ package main
 
 import (
 	"fmt"
+	"log"
 	"net/http"
+
+	"github.com/gorilla/mux"
+	"github.com/rs/cors"
 )
 
 /*
@@ -19,11 +23,19 @@ func main() {
 
 	fmt.Println("Starting backend Engine......")
 
+	router := mux.NewRouter()
+
 	// define the handler Functions
-	http.HandleFunc("/getEntries/", getEntries)
-	http.HandleFunc("/addEntry/", addEntry)
-	http.HandleFunc("/removeEntry/", removeEntry)
+	router.HandleFunc("/getEntries/", getEntries)
+	router.HandleFunc("/addEntry/", addEntry)
+	router.HandleFunc("/removeEntry/", removeEntry)
+
+	handler := cors.New(cors.Options{
+		AllowedOrigins: []string{"*"},
+		AllowedMethods: []string{"GET", "POST", "PATCH", "OPTIONS"},
+		AllowedHeaders: []string{"content_type", "Accept", "Accept-Language", "Content-Type"},
+	}).Handler(router)
 
 	// start listening
-	http.ListenAndServe(":8080", nil)
+	log.Fatal(http.ListenAndServe(":8080", handler))
 }

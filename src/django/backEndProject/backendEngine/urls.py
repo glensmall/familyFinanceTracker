@@ -4,4 +4,5 @@ from . import views
 
 urlpatterns = [
     path('getEntries/', views.getEntries, name='getEntries'),
+    path('getEntries', views.getEntries, name='getEntries'),
 ]

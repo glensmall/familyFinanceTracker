@@ -1,0 +1,28 @@
+{
+    "Transactions":[
+        {
+            "Description": "Shopping",
+            "Amount": 12.99,
+            "theDate": "01-12-2020",
+            "Balance": 100
+        },
+        {
+            "Description": "Amazon",
+            "Amount": 5.50,
+            "theDate": "02-12-2020",
+            "Balance": 94.50
+        },
+        {
+            "Description": "Fuel",
+            "Amount": 10.00,
+            "theDate": "02-12-2020",
+            "Balance": 84.50
+        },
+        {
+            "Description": "co-op",
+            "Amount": 1.99,
+            "theDate": "03-12-2020",
+            "Balance": 83.51
+        }
+    ]
+}

@@ -21,13 +21,13 @@ class ProdConfig(Config):
 
     FLASK_ENV = 'production'
     DEBUG = False
-    Testing = False
+    TESTING = False
 
     # Database
-    DatabaseHost = environ.get('PROD_DATABASE_HOST')
-    DatabaseUser = environ.get('PROD_DATABASE_USER')
-    DatabasePass = environ.get('PROD_DATABASE_PASS')
-    DatabaseName = environ.get('PROD_DATABASE_NAME')
+    DATABASE_HOST = environ.get('PROD_DATABASE_HOST')
+    DATABASE_USER = environ.get('PROD_DATABASE_USER')
+    DATABASE_PASS = environ.get('PROD_DATABASE_PASS')
+    DATABASE_NAME = environ.get('PROD_DATABASE_NAME')
 
 
 # configuration for dev
@@ -35,10 +35,13 @@ class DevConfig(Config):
 
     FLASK_ENV = 'development'
     DEBUG = True
-    Testing - True
+    TESTING = True
 
     # Database
-    DatabaseHost = environ.get('DEV_DATABASE_HOST')
-    DatabaseUser = environ.get('DEV_DATABASE_USER')
-    DatabasePass = environ.get('DEV_DATABASE_PASS')
-    DatabaseName = environ.get('DEV_DATABASE_NAME')
+    DATABASE_HOST = environ.get('DEV_DATABASE_HOST')
+    DATABASE_USER = environ.get('DEV_DATABASE_USER')
+    DATABASE_PASS = environ.get('DEV_DATABASE_PASS')
+    DATABASE_NAME = environ.get('DEV_DATABASE_NAME')
+
+    # TestResponse
+    TEST_RESPONSE = 'testData.json'

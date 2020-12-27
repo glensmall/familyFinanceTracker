@@ -13,15 +13,13 @@ class Config:
     SESSION_COOKIE_NAME = environ.get('SESSION_COOKIE_NAME')
 
     
-
-
-
 # configuration for production
 class ProdConfig(Config):
 
     FLASK_ENV = 'production'
     DEBUG = False
     TESTING = False
+    DEVELOPEMNT = False
 
     # Database
     DATABASE_HOST = environ.get('PROD_DATABASE_HOST')
@@ -36,6 +34,7 @@ class DevConfig(Config):
     FLASK_ENV = 'development'
     DEBUG = True
     TESTING = True
+    DEVELOPMENT = True
 
     # Database
     DATABASE_HOST = environ.get('DEV_DATABASE_HOST')

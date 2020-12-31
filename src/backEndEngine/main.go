@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"log"
 	"net/http"
 	"os"
@@ -25,26 +24,26 @@ func main() {
 
 	displayBanner()
 
-	fmt.Println("Loading OS Environment handler ......")
 	godotenv.Load()
+	printSuccess("Loading OS Environment Handler")
 
-	fmt.Println("Creating MUX Router .......")
 	router := mux.NewRouter()
+	printSuccess("Creating MUX Router")
 
-	fmt.Println("Adding router handlers to the router .......")
 	// define the handler Functions
 	router.HandleFunc("/getEntries/", getEntries)
 	router.HandleFunc("/addEntry/", addEntry)
 	router.HandleFunc("/removeEntry/", removeEntry)
+	printSuccess("Adding routes to MUX router")
 
-	fmt.Println("Adding CORS default headers to the router ..........")
 	handler := cors.New(cors.Options{
 		AllowedOrigins: []string{"*"},
 		AllowedMethods: []string{"GET", "POST", "PATCH", "OPTIONS"},
 		AllowedHeaders: []string{"content_type", "Accept", "Accept-Language", "Content-Type"},
 	}).Handler(router)
+	printSuccess("Adding CORS default headers to the router")
 
-	fmt.Println("Starting HTTP Listener on [", os.Getenv("ENGINE_LISTENER"), "]")
+	printInfo("Starting HTTP Listener on [" + os.Getenv("ENGINE_LISTENER") + "]")
 	// start listening
 	log.Fatal(http.ListenAndServe(os.Getenv("ENGINE_LISTENER"), handler))
 }

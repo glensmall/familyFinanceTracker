@@ -24,16 +24,20 @@ func getEntries(w http.ResponseWriter, r *http.Request) {
 	fileContents, err := ioutil.ReadFile(".\\testData.json")
 
 	if err != nil {
-		fmt.Println("Error reading the testJson File", err)
+
+		printError(fmt.Sprintf("/getEntries/ - %s", err))
+
+	} else {
+		printSuccess("Read Test JSON file")
+
+		// set the headers properly
+		w.WriteHeader(http.StatusOK)
+		w.Header().Set("Content-Type", "application.json")
+
+		// redner the file contents as a string back to the caller
+		fmt.Fprintln(w, string(fileContents))
+
+		// some console output.
+		printInfo("/getEntries/ Serving Json")
 	}
-
-	// set the headers properly
-	w.WriteHeader(http.StatusOK)
-	w.Header().Set("Content-Type", "application.json")
-
-	// redner the file contents as a string back to the caller
-	fmt.Fprintln(w, string(fileContents))
-
-	// some console output.
-	fmt.Println("Serving Json")
 }

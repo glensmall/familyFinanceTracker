@@ -8,7 +8,14 @@ import (
 	"github.com/gorilla/mux"
 	"github.com/joho/godotenv"
 	"github.com/rs/cors"
+	"go.mongodb.org/mongo-driver/mongo"
+
+	"context"
 )
+
+// global vars
+var myClient *mongo.Client
+var myContext *context.Context
 
 /*
 	Function: main
@@ -42,6 +49,16 @@ func main() {
 		AllowedHeaders: []string{"content_type", "Accept", "Accept-Language", "Content-Type"},
 	}).Handler(router)
 	printSuccess("Adding CORS default headers to the router")
+
+	printInfo("Attempting to connect to the backend Database")
+	myClient, myContext, err := initDB()
+
+	if err != nil {
+		printError("Exiting ......")
+		return
+	}
+
+	defer myClient.Disconnect(*myContext)
 
 	printInfo("Starting HTTP Listener on [" + os.Getenv("ENGINE_LISTENER") + "]")
 	// start listening

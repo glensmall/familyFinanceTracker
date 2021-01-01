@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"log"
 	"net/http"
 	"os"
@@ -58,7 +59,11 @@ func main() {
 		return
 	}
 
-	defer myClient.Disconnect(*myContext)
+	defer func() {
+		if err = myClient.Disconnect(*myContext); err != nil {
+			printError(fmt.Sprintf("Error disconnecting from DB - %s", err))
+		}
+	}()
 
 	printInfo("Starting HTTP Listener on [" + os.Getenv("ENGINE_LISTENER") + "]")
 	// start listening

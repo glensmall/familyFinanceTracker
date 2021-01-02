@@ -1,7 +1,9 @@
 package main
 
 import (
+	"context"
 	"net/http"
+	"time"
 )
 
 /*
@@ -17,5 +19,8 @@ import (
 	Purpose : Backend handler to remove an entry from the database
 */
 func getEntries(w http.ResponseWriter, r *http.Request) {
+
+	// establish a context
+	ctx, _ := context.WithTimeout(context.Background(), 10*time.Second)
 
 }

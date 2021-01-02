@@ -1,23 +1,5 @@
 package main
 
-import (
-	"fmt"
-	"log"
-	"net/http"
-	"os"
-
-	"github.com/gorilla/mux"
-	"github.com/joho/godotenv"
-	"github.com/rs/cors"
-	"go.mongodb.org/mongo-driver/mongo"
-
-	"context"
-)
-
-// global vars
-var myClient *mongo.Client
-var myContext *context.Context
-
 /*
 	Function: main
 	Author	: Glen Small
@@ -30,42 +12,46 @@ var myContext *context.Context
 */
 func main() {
 
-	displayBanner()
+	//TODO: This all needs to be moved but not sure on the final location yet.
 
-	godotenv.Load()
-	printSuccess("Loading OS Environment Handler")
+	/*
+		displayBanner()
 
-	router := mux.NewRouter()
-	printSuccess("Creating MUX Router")
+		godotenv.Load()
+		consoleout.printSuccess("Loading OS Environment Handler")
 
-	// define the handler Functions
-	router.HandleFunc("/getEntries/", getEntries)
-	router.HandleFunc("/addEntry/", addEntry)
-	router.HandleFunc("/removeEntry/", removeEntry)
-	printSuccess("Adding routes to MUX router")
+		router := mux.NewRouter()
+		consoleout.printSuccess("Creating MUX Router")
 
-	handler := cors.New(cors.Options{
-		AllowedOrigins: []string{"*"},
-		AllowedMethods: []string{"GET", "POST", "PATCH", "OPTIONS"},
-		AllowedHeaders: []string{"content_type", "Accept", "Accept-Language", "Content-Type"},
-	}).Handler(router)
-	printSuccess("Adding CORS default headers to the router")
+		// define the handler Functions
+		router.HandleFunc("/getEntries/", getEntries)
+		router.HandleFunc("/addEntry/", addEntry)
+		router.HandleFunc("/removeEntry/", removeEntry)
+		consoleout.printSuccess("Adding routes to MUX router")
 
-	printInfo("Attempting to connect to the backend Database")
-	myClient, myContext, err := initDB()
+		handler := cors.New(cors.Options{
+			AllowedOrigins: []string{"*"},
+			AllowedMethods: []string{"GET", "POST", "PATCH", "OPTIONS"},
+			AllowedHeaders: []string{"content_type", "Accept", "Accept-Language", "Content-Type"},
+		}).Handler(router)
+		consoleout.printSuccess("Adding CORS default headers to the router")
 
-	if err != nil {
-		printError("Exiting ......")
-		return
-	}
+		consoleout.printInfo("Attempting to connect to the backend Database")
+		myClient, myContext, err := initDB()
 
-	defer func() {
-		if err = myClient.Disconnect(*myContext); err != nil {
-			printError(fmt.Sprintf("Error disconnecting from DB - %s", err))
+		if err != nil {
+			consoleout.printError("Exiting ......")
+			return
 		}
-	}()
 
-	printInfo("Starting HTTP Listener on [" + os.Getenv("ENGINE_LISTENER") + "]")
-	// start listening
-	log.Fatal(http.ListenAndServe(os.Getenv("ENGINE_LISTENER"), handler))
+		defer func() {
+			if err = myClient.Disconnect(*myContext); err != nil {
+				consoleout.printError(fmt.Sprintf("Error disconnecting from DB - %s", err))
+			}
+		}()
+
+		printInfo("Starting HTTP Listener on [" + os.Getenv("ENGINE_LISTENER") + "]")
+		// start listening
+		log.Fatal(http.ListenAndServe(os.Getenv("ENGINE_LISTENER"), handler))
+	*/
 }

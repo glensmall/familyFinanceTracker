@@ -20,7 +20,7 @@ func displayBanner() {
 
 	fmt.Println("-------------------------------------------------------")
 	fmt.Println("|           BACKEND ENGINE STARTING                   |")
-	fmt.Println("-------------------------------------------------------\n")
+	fmt.Print("-------------------------------------------------------\n\n")
 
 	// will add some other stuff in here later- like version info
 

@@ -1,4 +1,4 @@
-package consoleout
+package main
 
 import (
 	"fmt"

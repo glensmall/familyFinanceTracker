@@ -1,4 +1,4 @@
-module github.com/glensmall/consolewriter
+module consolewriter
 
 go 1.15
 

@@ -12,5 +12,5 @@ require (
 	DBLayer v0.0.0
 )
 
-replace "consolewriter" => "../consolewriter"
-replace "DBLayer" => "../DBLayer"
+replace "consolewriter" => "./consolewriter"
+replace "DBLayer" => "./DBLayer"

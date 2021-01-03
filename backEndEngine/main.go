@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"log"
 	"net/http"
 	"os"
@@ -50,16 +49,18 @@ func main() {
 	consolewriter.PrintInfo("Attempting to connect to the backend Database")
 	//TODO:  Need to add the db connection stuff here
 
-	if err != nil {
-		consolewriter.PrintError("Exiting ......")
-		return
-	}
-
-	defer func() {
-		if err = myClient.Disconnect(*myContext); err != nil {
-			consolewriter.PrintError(fmt.Sprintf("Error disconnecting from DB - %s", err))
+	/*
+		if err != nil {
+			consolewriter.PrintError("Exiting ......")
+			return
 		}
-	}()
+
+		defer func() {
+			if err = myClient.Disconnect(*myContext); err != nil {
+				consolewriter.PrintError(fmt.Sprintf("Error disconnecting from DB - %s", err))
+			}
+		}()
+	*/
 
 	consolewriter.PrintInfo("Starting HTTP Listener on [" + os.Getenv("ENGINE_LISTENER") + "]")
 	// start listening

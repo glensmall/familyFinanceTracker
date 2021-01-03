@@ -6,6 +6,7 @@ import (
 	"time"
 
 	"consolewriter"
+
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
 	"go.mongodb.org/mongo-driver/mongo/readpref"
@@ -21,12 +22,12 @@ var ctx context.Context
 	This is a structure that defines what each document in the DB will look like
 	Will use this when we read and write to mongo
 */
-type Transaction Struct {
-	ID int64 `json:"id:omitempty"`,
-	Description string `json:"description:omitempty`,
-	Date string `json:"date:omitempty`,
-	Amount float32 `json:"amount:omitempty`
-} 
+type Transaction struct {
+	ID          int64   `json:"id:omitempty"`
+	Description string  `json:"description:omitempty`
+	Date        string  `json:"date:omitempty`
+	Amount      float32 `json:"amount:omitempty`
+}
 
 /*
 	Function: Connect
@@ -63,7 +64,6 @@ func Connect() error {
 	return err
 }
 
-
 /*
 	Function: Disconnect
 	Author	: Glen Small
@@ -74,14 +74,14 @@ func Connect() error {
 
 	Purpose : disconnects from the DB and closes the connection
 */
-func Disconnect() (error){
+func Disconnect() error {
 
 	err := client.Disconnect(ctx)
 
 	if err != nil {
-		consolewriter.PrintError(fmt.sprintf("Error disconnecting from the database - %s", err))
+		consolewriter.PrintError(fmt.Sprintf("Error disconnecting from the database - %s", err))
 		return err
-	} 
+	}
 
 	consolewriter.PrintSuccess("Database Disconnected")
 

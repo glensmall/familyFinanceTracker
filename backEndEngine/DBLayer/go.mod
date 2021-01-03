@@ -1,4 +1,4 @@
-module DBLayer
+module dblayer
 
 go 1.15
 

@@ -11,8 +11,7 @@ import (
 	"github.com/joho/godotenv"
 	"github.com/rs/cors"
 
-	"backendEngine / DBLayer"
-	"backendEngine / consolewriter"
+	"consolewriter"
 )
 
 /*

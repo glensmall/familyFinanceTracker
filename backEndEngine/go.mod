@@ -9,8 +9,8 @@ require (
 	github.com/rs/cors v1.7.0
 	go.mongodb.org/mongo-driver v1.4.4
 	consolewriter v0.0.0
-	DBLayer v0.0.0
+	dblayer v0.0.0
 )
 
 replace "consolewriter" => "./consolewriter"
-replace "DBLayer" => "./DBLayer"
+replace "dblayer" => "./dblayer"

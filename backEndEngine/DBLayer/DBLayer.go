@@ -1,4 +1,4 @@
-package DBLayer
+package dblayer
 
 import (
 	"fmt"

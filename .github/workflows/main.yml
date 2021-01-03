@@ -18,9 +18,9 @@ jobs:
       
     - name: get_my_code
       run:  go mod tidy
-      working-directory: ./backEndEngine
+      working-directory: ../backEndEngine
         
     - name: Build
       run: go build backEndEngine
-      working-directory: ./backEndEngine
+      working-directory: ../backEndEngine
         

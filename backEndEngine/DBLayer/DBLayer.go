@@ -13,6 +13,7 @@ import (
 	"context"
 )
 
+// a couple of global variables I'll be using
 var client *mongo.Client
 var ctx context.Context
 
@@ -58,6 +59,31 @@ func Connect() error {
 	}
 
 	consolewriter.PrintSuccess("Database found and connection established")
+
+	return err
+}
+
+
+/*
+	Function: Disconnect
+	Author	: Glen Small
+	Date	: 3rd January 2021
+
+	Params	: none
+	Returns	: error
+
+	Purpose : disconnects from the DB and closes the connection
+*/
+func Disconnect() (error){
+
+	err := client.Disconnect(ctx)
+
+	if err != nil {
+		consolewriter.PrintError(fmt.sprintf("Error disconnecting from the database - %s", err))
+		return err
+	} 
+
+	consolewriter.PrintSuccess("Database Disconnected")
 
 	return err
 }

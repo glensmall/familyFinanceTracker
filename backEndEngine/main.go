@@ -49,7 +49,7 @@ func main() {
 	consolewriter.PrintSuccess("Adding CORS default headers to the router")
 
 	consolewriter.PrintInfo("Attempting to connect to the backend Database")
-	myClient, myContext, err := initDB()
+	//TODO:  Need to add the db connection stuff here
 
 	if err != nil {
 		consolewriter.PrintError("Exiting ......")

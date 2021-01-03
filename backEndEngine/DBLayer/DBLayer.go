@@ -16,8 +16,29 @@ import (
 var client *mongo.Client
 var ctx context.Context
 
-// function to open up a mongo conection
-func Init() error {
+/*
+	This is a structure that defines what each document in the DB will look like
+	Will use this when we read and write to mongo
+*/
+type Transaction Struct {
+	ID int64 `json:"id:omitempty"`,
+	Description string `json:"description:omitempty`,
+	Date string `json:"date:omitempty`,
+	Amount float32 `json:"amount:omitempty`
+} 
+
+/*
+	Function: Connect
+	Author	: Glen Small
+	Date	: 3rd January 2021
+
+	Params	: none
+	Returns	: error
+
+	Purpose : Creates the requierd objects and connects to the defines database
+			  The connection string varibales will be read from .env and formatted as needed
+*/
+func Connect() error {
 
 	// mongodb://myDBReader:D1fficultP%40ssw0rd@mongodb0.example.com:27017/?authSource=admin
 	connectionString := fmt.Sprintf("mongodb://%s:%s@%s:%s/?authSource=%s", os.Getenv("DATABASE_USER"), os.Getenv("DATABASE_PASS"), os.Getenv("DATABASE_HOST"), os.Getenv("DATABASE_PORT"), os.Getenv("DATABASE_DB"))

@@ -22,11 +22,8 @@ jobs:
       run: |
           pwd
           ls -al
-          cd backEndEngine
-      
-    - name: Run Go Tidy
-      run:  go mod tidy
         
     - name: Build backendEngine
-      run: go build
+      run: go build -mod vendor
+      working-directory: ${{env.working-directory}}
         

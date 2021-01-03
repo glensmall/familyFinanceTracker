@@ -1,10 +1,11 @@
-package main
+package DBLayer
 
 import (
 	"fmt"
 	"os"
 	"time"
 
+	"backendEngine / consolewriter"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
 	"go.mongodb.org/mongo-driver/mongo/readpref"
@@ -12,13 +13,16 @@ import (
 	"context"
 )
 
+var client *mongo.Client
+var ctx context.Context
+
 // function to open up a mongo conection
-func initDB() (*mongo.Client, *context.Context, error) {
+func Init() error {
 
 	// mongodb://myDBReader:D1fficultP%40ssw0rd@mongodb0.example.com:27017/?authSource=admin
 	connectionString := fmt.Sprintf("mongodb://%s:%s@%s:%s/?authSource=%s", os.Getenv("DATABASE_USER"), os.Getenv("DATABASE_PASS"), os.Getenv("DATABASE_HOST"), os.Getenv("DATABASE_PORT"), os.Getenv("DATABASE_DB"))
 
-	printInfo(fmt.Sprintf("Using Connection String [%s]", connectionString))
+	consolewriter.PrintInfo(fmt.Sprintf("Using Connection String [%s]", connectionString))
 
 	ctx, _ := context.WithTimeout(context.Background(), 10*time.Second)
 
@@ -28,11 +32,11 @@ func initDB() (*mongo.Client, *context.Context, error) {
 	err = client.Ping(ctx, readpref.Primary())
 
 	if err != nil {
-		printError(fmt.Sprintf("Error Initialising the DB connection - %s", err))
-		return nil, nil, err
+		consolewriter.PrintError(fmt.Sprintf("Error Initialising the DB connection - %s", err))
+		return err
 	}
 
-	printSuccess("Database found and connection established")
+	consolewriter.PrintSuccess("Database found and connection established")
 
-	return client, &ctx, err
+	return err
 }

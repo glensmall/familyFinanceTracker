@@ -10,6 +10,9 @@ import (
 
 	"github.com/joho/godotenv"
 	"github.com/rs/cors"
+
+	"backendEngine / DBLayer"
+	"backendEngine / consolewriter"
 )
 
 /*
@@ -27,39 +30,39 @@ func main() {
 	displayBanner()
 
 	godotenv.Load()
-	printSuccess("Loading OS Environment Handler")
+	consolewriter.PrintSuccess("Loading OS Environment Handler")
 
 	router := mux.NewRouter()
-	printSuccess("Creating MUX Router")
+	consolewriter.PrintSuccess("Creating MUX Router")
 
 	// define the handler Functions
 	router.HandleFunc("/getEntries/", getEntries)
 	router.HandleFunc("/addEntry/", addEntry)
 	router.HandleFunc("/removeEntry/", removeEntry)
-	printSuccess("Adding routes to MUX router")
+	consolewriter.PrintSuccess("Adding routes to MUX router")
 
 	handler := cors.New(cors.Options{
 		AllowedOrigins: []string{"*"},
 		AllowedMethods: []string{"GET", "POST", "PATCH", "OPTIONS"},
 		AllowedHeaders: []string{"content_type", "Accept", "Accept-Language", "Content-Type"},
 	}).Handler(router)
-	printSuccess("Adding CORS default headers to the router")
+	consolewriter.PrintSuccess("Adding CORS default headers to the router")
 
-	printInfo("Attempting to connect to the backend Database")
+	consolewriter.PrintInfo("Attempting to connect to the backend Database")
 	myClient, myContext, err := initDB()
 
 	if err != nil {
-		printError("Exiting ......")
+		consolewriter.PrintError("Exiting ......")
 		return
 	}
 
 	defer func() {
 		if err = myClient.Disconnect(*myContext); err != nil {
-			printError(fmt.Sprintf("Error disconnecting from DB - %s", err))
+			consolewriter.PrintError(fmt.Sprintf("Error disconnecting from DB - %s", err))
 		}
 	}()
 
-	printInfo("Starting HTTP Listener on [" + os.Getenv("ENGINE_LISTENER") + "]")
+	consolewriter.PrintInfo("Starting HTTP Listener on [" + os.Getenv("ENGINE_LISTENER") + "]")
 	// start listening
 	log.Fatal(http.ListenAndServe(os.Getenv("ENGINE_LISTENER"), handler))
 }

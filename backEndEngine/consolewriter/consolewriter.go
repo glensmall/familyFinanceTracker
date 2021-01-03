@@ -1,4 +1,4 @@
-package main
+package consolewriter
 
 import (
 	"fmt"
@@ -8,7 +8,7 @@ import (
 )
 
 /*
-	Function: printInfo
+	Function: PrintInfo
 	Author	: Glen Small
 	Date	: 30th December 2020
 
@@ -19,7 +19,7 @@ import (
 	Purpose : will output the given text with [INFO] in Grey at the end.
 
 */
-func printInfo(data string) {
+func PrintInfo(data string) {
 
 	currentTime := time.Now()
 
@@ -30,7 +30,7 @@ func printInfo(data string) {
 }
 
 /*
-	Function: printSuccess
+	Function: PrintSuccess
 	Author	: Glen Small
 	Date	: 30th December 2020
 
@@ -41,7 +41,7 @@ func printInfo(data string) {
 	Purpose : will output the given text with date-time at the start and [OK] in green at the end.
 
 */
-func printSuccess(data string) {
+func PrintSuccess(data string) {
 
 	currentTime := time.Now()
 
@@ -52,7 +52,7 @@ func printSuccess(data string) {
 }
 
 /*
-	Function: printWarning
+	Function: PrintWarning
 	Author	: Glen Small
 	Date	: 30th December 2020
 
@@ -63,7 +63,7 @@ func printSuccess(data string) {
 	Purpose : will output the given text with date-time at the start and [WARNING] in yellow at the end.
 
 */
-func printWarning(data string) {
+func PrintWarning(data string) {
 
 	currentTime := time.Now()
 
@@ -73,7 +73,7 @@ func printWarning(data string) {
 }
 
 /*
-	Function: printError
+	Function: PrintError
 	Author	: Glen Small
 	Date	: 30th December 2020
 
@@ -84,7 +84,7 @@ func printWarning(data string) {
 	Purpose : will output the given text with date-time at the start and [FAILED] in red at the end.
 
 */
-func printError(data string) {
+func PrintError(data string) {
 
 	currentTime := time.Now()
 

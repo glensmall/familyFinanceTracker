@@ -16,11 +16,11 @@ jobs:
     - name: Check out code into the Go module directory
       uses: actions/checkout@v2
       
-    - name: get_my_code
+    - name: Run Go Tidy
       run:  go mod tidy
-      working-directory: ../backEndEngine
+      working-directory: ./backEndEngine
         
-    - name: Build
+    - name: Build backendEngine
       run: go build backEndEngine
-      working-directory: ../backEndEngine
+      working-directory: ./backEndEngine
         
